@@ -3,7 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 import dados from "./src/data/dados.js";
-const { bruxos } = dados;
+const { bruxos, varinhas, pocoes, animais } = dados;
 
 // Criar aplicação com Express e configurar para aceitar JSON
 const app = express();
@@ -118,7 +118,7 @@ app.post("/varinhas", (req, res) => {
     // Criar novo bruxo
     const novaVarinha = {
         // Id automatico
-        id: varinha.length + 1,
+        id: varinhas.length + 1,
         // Daqui pra baixo tem que colocar no body no postman
         nucleo,
         material,
@@ -138,7 +138,7 @@ app.post("/varinhas", (req, res) => {
 //Rota para buscar poções
 app.get("/pocoes", (req, res) => {
     const { nome, efeito } = req.query;
-    let resultado = varinhas;
+    let resultado = pocoes;
 
     if (nome) {
         resultado = resultado.filter((b) => b.nome.toLowerCase().includes(nome.toLowerCase()));
@@ -157,7 +157,7 @@ app.get("/pocoes", (req, res) => {
 //Rota para buscar animais
 app.get("/animais", (req, res) => {
     const { tipo, nome } = req.query;
-    let resultado = varinhas;
+    let resultado = animais;
 
      if (tipo) {
         resultado = resultado.filter((b) => b.tipo == tipo);
